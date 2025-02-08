@@ -10,7 +10,7 @@ Welcome to **FitnessHive** – a modern gym website where users can **register, 
 - **Interactive UI**: Smooth animations and transitions.
 
 ## 🛠 Tech Stack
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS , Tailwind , JavaScript
 
 ## 📂 Project Structure
 ```

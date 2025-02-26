@@ -15,8 +15,8 @@ Welcome to **FitnessHive** – a modern gym website where users can **register, 
 ## 📂 Project Structure
 ```
 FitnessHive/
-│── Landingpage.html        # Main landing page
-│── index.html   # Registration page
+│── index.html        # Main landing page
+│── Registration.html   # Registration page
 │── Login.html         # Login page
 │── Forgetpass.html    # Forgot password page
 │── assets/

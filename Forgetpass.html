@@ -1,123 +1,183 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITNESS HIVE - Forgot Password</title>
+    <meta name="description" content="Reset your FITNESS HIVE password" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        height: 100vh;
+        background-color: #f8f9fa;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+      }
+      
+      .gym-accent {
+        color: #e63946;
+      }
+      
+      .bg-gym-accent {
+        background-color: #e63946;
+      }
+      
+      .hover-gym-accent:hover {
+        background-color: #d62f3d;
+      }
+      
+      .gym-input:focus {
+        border-color: #e63946;
+        box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.15);
+      }
+      
+      /* Simple fade-in animation */
+      .fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
 
-        <script>
-            function Forget() {
-                
-     let allUsers = JSON.parse(localStorage.getItem("allusers"));
-    let emailId = document.getElementById("name10").value;
+      #password-section {
+        display: none; 
+      }
+    </style>
+  </head>
 
-    let user = allUsers.find(val => val.username === emailId);
-    if(user){
-        document.getElementById("password-section").style.display = "block";
-        document.getElementById("verify-button").style.display = "none";
-    }
-    else{
-        alert("user not found")
-    }
-
-   
-}
-function update(){
-  
-    let allUsers = JSON.parse(localStorage.getItem("allusers"));
-    let emailId = document.getElementById("name10").value;
-    let newPassword = document.getElementById("newpass").value;
-    let confirmPassword = document.getElementById("newpass2").value;
-    let user = allUsers.find(val => val.username === emailId);
-
-    if (user) {
-
-        if (newPassword === confirmPassword) {
+  <body class="bg-gray-100 py-8 px-4">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden fade-in">
+      <!-- Header -->
+      <div class="bg-gray-50 p-6 border-b border-gray-200">
+        <div class="flex justify-center mb-2">
+          <div class="font-bold text-2xl tracking-tight">
+            <span class="gym-accent">FITNESS</span><span class="ml-1">HIVE</span>
+          </div>
+        </div>
+        <h2 class="text-center text-2xl font-bold text-gray-900 mt-2">
+          Forgot Password
+        </h2>
+        <p class="text-center text-gray-500 text-sm mt-1">
+          Reset your password to access your account
+        </p>
+      </div>
+      
+      <!-- Form -->
+      <div class="p-6">
+        <div class="space-y-4">
+          <div>
+            <label for="name10" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input
+              id="name10"
+              type="email"
+              class="gym-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+              placeholder="Enter your email"
+              required
+            >
+            <button
+              id="verify-button"
+              onclick="Forget()"
+              class="w-full mt-2 py-2 px-4 bg-gym-accent hover-gym-accent text-white rounded-md font-medium transition-colors"
+            >
+              Verify
+            </button>
+          </div>
+          
+          <div id="password-section">
+            <div class="mt-4">
+              <label for="newpass" class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+              <input
+                id="newpass"
+                type="password"
+                class="gym-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+                placeholder="Enter your new password"
+                required
+              >
+            </div>
             
-            user.password = newPassword;
-           
-            localStorage.setItem("allusers", JSON.stringify(allUsers));
-            alert("Password Changed");
-        } else {
-            alert("Passwords do not match");
+            <div class="mt-4">
+              <label for="newpass2" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <input
+                id="newpass2"
+                type="password"
+                class="gym-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+                placeholder="Confirm your password"
+                required
+              >
+            </div>
+            
+            <button
+              onclick="update()"
+              class="w-full mt-4 py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-colors"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-6 text-center">
+          <p class="text-sm text-gray-600">
+            Remember your password?
+            <a href="Login.html" class="gym-accent hover:underline">
+              Sign in
+            </a>
+          </p>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center text-xs text-gray-500">
+        &copy; <span id="current-year"></span> FITNESS HIVE. All rights reserved.
+        <br>
+        <span class="mt-1 inline-block">Developed by Adeel Ariq</span>
+      </div>
+    </div>
+
+    <script>
+      // Set current year in the footer
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Your original password reset code, kept intact
+      function Forget() {
+        let allUsers = JSON.parse(localStorage.getItem("allusers"));
+        let emailId = document.getElementById("name10").value;
+
+        let user = allUsers.find(val => val.username === emailId);
+        if(user){
+            document.getElementById("password-section").style.display = "block";
+            document.getElementById("verify-button").style.display = "none";
         }
-    } else {
-        alert("Invalid email");
-    }
+        else{
+            alert("User not found");
+        }
+      }
 
-}
-</script>
-        <style>
-        body {
-    background-image: url('background-solid-glare-light-wallpaper-preview.jpg');
-    background-size: cover;
-    background-position: center;
-    font-family: Arial, sans-serif;
-    height: 100vh; 
-    margin: 0;
-    padding: 0;
-}
+      function update(){
+        let allUsers = JSON.parse(localStorage.getItem("allusers"));
+        let emailId = document.getElementById("name10").value;
+        let newPassword = document.getElementById("newpass").value;
+        let confirmPassword = document.getElementById("newpass2").value;
+        let user = allUsers.find(val => val.username === emailId);
 
-
-#parent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    width: 90%;
-    max-width: 700px;
-    border: solid 2px black;
-    padding: 60px;
-    background-color: aliceblue;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-
-@media (max-width: 768px) {
-    #parent {
-        width: 90%;
-        padding: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    #parent {
-        width: 95%;
-        padding: 25px;
-    }
-}
-
-        #password-section {
-                display: none; 
+        if (user) {
+            if (newPassword === confirmPassword) {
+                user.password = newPassword;
+                localStorage.setItem("allusers", JSON.stringify(allUsers));
+                alert("Password Changed");
+                window.location = "index.html";
+            } else {
+                alert("Passwords do not match");
             }
-        </style>
-    </head>
-    <body>
-        <div id="parent" class="container mt-4">
-            <h3 class="text-center">Forget Password</h3>
-            
-            <div class="mb-3">
-                <label for="name10" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="name10" placeholder="Enter your email" required>
-                <button class="btn btn-primary btn-block mt-2" id="verify-button" onclick="Forget()">Verify</button>
-            </div>
-            
-            <div id="password-section">
-                <div class="mb-3">
-                    <label for="newpass" class="form-label">New Password</label>
-                    <input type="password" class="form-control" id="newpass" placeholder="Enter your new password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="newpass2" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="newpass2" placeholder="Confirm your password" required>
-                </div>
-                <button class="btn btn-success btn-block" onclick="update()">Submit</button>
-            </div>
-
-            <div class="mt-3">
-                <a href="login.html" class="text-decoration-none">Login</a>
-            </div>
-
-    </body>
+        } else {
+            alert("Invalid email");
+        }
+      }
+    </script>
+  </body>
 </html>
